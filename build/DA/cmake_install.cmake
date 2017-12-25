@@ -1,4 +1,4 @@
-# Install script for directory: /Users/MaheenContractor/Documents/Fall 2017-2018/PA/Project/DA
+# Install script for directory: /Users/Hassaan/Documents/CS/Courses/CS 4612/Project/Dynamic_Analysis/DA
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

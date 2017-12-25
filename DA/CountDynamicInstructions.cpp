@@ -31,7 +31,7 @@ void add(Function *F) {
           (F->getParent())
               ->getOrInsertFunction(
                   "_Z9add123456Pc", builder.getVoidTy(),
-                  Type::getInt8PtrTy((F->getParent())->getContext()), NULL);
+                  Type::getInt8PtrTy((F->getParent())->getContext()));
       Function *add = cast<Function>(c);
       std::vector<Value *> v;
       // errs() << ix << '\n';
@@ -58,7 +58,8 @@ void addAtEnd(Function *F) {
         builder2.SetInsertPoint(&(*j));
         Constant *c = (F->getParent())
                           ->getOrInsertFunction("_Z7printttv",
-                                                builder2.getVoidTy(), NULL);
+                                                builder2.getVoidTy(),
+                  Type::getInt8PtrTy((F->getParent())->getContext()));
         Function *add = cast<Function>(c);
         builder2.CreateCall(add);
       }

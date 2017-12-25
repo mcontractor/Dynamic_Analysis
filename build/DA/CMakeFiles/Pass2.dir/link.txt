@@ -1,1 +1,1 @@
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  -bundle -Wl,-headerpad_max_install_names -undefined dynamic_lookup -o libPass2.so CMakeFiles/Pass2.dir/CountDynamicInstructions.cpp.o CMakeFiles/Pass2.dir/Pass2.cpp.o  -L/usr/local/opt/llvm/lib 
+/Library/Developer/CommandLineTools/usr/bin/c++   -bundle -Wl,-headerpad_max_install_names -undefined dynamic_lookup -o libPass2.so CMakeFiles/Pass2.dir/CountDynamicInstructions.cpp.o CMakeFiles/Pass2.dir/Pass2.cpp.o 
