@@ -127,6 +127,7 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/l
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/SmallPtrSet.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/SmallString.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/SmallVector.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/StringExtras.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/StringMap.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/StringRef.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/Twine.h
@@ -139,6 +140,8 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/l
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/iterator.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/iterator_range.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/ADT/simple_ilist.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Bitcode/BitCodes.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Bitcode/BitcodeReader.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Config/abi-breaking.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Config/llvm-config.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/Argument.h
@@ -153,6 +156,7 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/l
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/DataLayout.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/DebugLoc.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/DerivedTypes.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/DiagnosticInfo.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/Function.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/GlobalAlias.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/GlobalIFunc.h
@@ -172,6 +176,7 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/l
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/Metadata.def
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/Metadata.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/Module.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/ModuleSummaryIndex.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/OperandTraits.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/Operator.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/IR/SymbolTableListTraits.h
@@ -198,7 +203,9 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/l
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/CommandLine.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/Compiler.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/DataTypes.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/Debug.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/Endian.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/Error.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/ErrorHandling.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/ErrorOr.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/Host.h
@@ -209,8 +216,13 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/l
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/Options.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/PointerLikeTypeTraits.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/RWMutex.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/Regex.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/SMLoc.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/SourceMgr.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/SwapByteOrder.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/Threading.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/YAMLParser.h
+DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/YAMLTraits.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/raw_ostream.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Support/type_traits.h
 DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o: /usr/local/include/llvm/Transforms/IPO/PassManagerBuilder.h

@@ -23,9 +23,6 @@
 
 using namespace llvm;
 
-std::map<std::string, std::vector<int>> function_values1;
-std::map<std::string, std::vector<int>> function_values2;
-
 std::vector<Instruction*> set1;
 std::vector<Instruction*> set2;
 
@@ -231,7 +228,123 @@ int compare_inst(Instruction* inst1, Instruction* inst2)
 	}
 }
 
+size_t hamming_distance(std::vector<Instruction*> v1, std::vector<Instruction*> v2)
+{
+	size_t dist = 0;
 
+	if (v1.size() >= v2.size())
+	{
+		for (int i = 0; i < v2.size(); ++i)
+		{
+			if (compare_inst(v1[i], v2[i]) == 1)
+			{
+				dist++;
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < v1.size(); ++i)
+		{
+			if (compare_inst(v1[i], v2[i]) == 1)
+			{
+				dist++;
+			}
+		}
+	}
+	return dist;
+}
+
+int dice_match(char *string1, char *string2)
+{
+    struct pairs
+            {
+            char chars[2];
+            struct pairs *next;
+            };
+    struct pairs *string1head = NULL;
+    struct pairs *string1current;
+    struct pairs *string1previous;
+    struct pairs *string2head = NULL;
+    struct pairs *string2current;
+    struct pairs *string2previous;
+    
+    int counter=0, string1pairs=0, string2pairs=0;
+    
+    if (string1[0]=='\0' || string2[0]=='\0')
+            return 0;
+    while (string1[counter+1] != '\0')
+    {
+	    if (string1[counter] != ' ' && string1[counter+1] != ' ')
+	            {
+	            string1current = (struct pairs *) malloc(sizeof(struct pairs));
+	            if (string1current==NULL)
+	                    exit(EXIT_FAILURE);
+	            if (string1head == NULL)      
+	                    string1head = string1current;
+	            else                   
+	                    string1previous->next = string1current;
+	            string1current->next = NULL;
+	            string1current->chars[0]=toupper(string1[counter]);
+	            string1current->chars[1]=toupper(string1[counter+1]);
+	            string1previous=string1current;
+	            string1pairs++;
+	            }
+	    counter++;
+    }
+            
+    counter=0;      
+    while (string2[counter+1] != '\0')
+    {
+	    if (string2[counter] != ' ' && string2[counter+1] != ' ')
+	            {
+	            string2current = (struct pairs *) malloc(sizeof(struct pairs));
+	            if (string2current==NULL)
+	                    exit(EXIT_FAILURE);
+	            if (string2head == NULL)      
+	                    string2head = string2current;
+	            else                   
+	                    string2previous->next = string2current;
+	            string2current->next = NULL;
+	            string2current->chars[0]=toupper(string2[counter]);
+	            string2current->chars[1]=toupper(string2[counter+1]);
+	            string2previous=string2current;
+	            string2pairs++;
+	            }
+	    counter++;
+    }
+    counter=0;
+    string1current=string1head;
+    while (string1current != NULL)
+    {
+        string2current=string2head;
+        while (string2current != NULL)
+                {
+                if (string2current->chars[0]== string1current->chars[0] && string2current->chars[1]==string1current->chars[1])
+                        {
+                        string2current->chars[0]='\0'; // Otherwise, 'GGGGG' would score a perfect match against 'GG'.
+                        counter+=2;
+                        break;
+                        }
+                string2current=string2current->next;
+                }
+        string1current=string1current->next;
+    }
+                
+    string1current = string1head;
+    while (string1current != NULL)
+    {
+        free(string1current);
+        string1current = string1current->next;
+    }
+    string2current = string2head;
+    while (string2current != NULL)
+    {
+        free(string2current);
+        string2current = string2current->next;
+    }
+    return (((double)counter/(string1pairs+string2pairs))*100);
+}
 
 size_t levenshtein_distance(std::vector<Instruction*> v1, std::vector<Instruction*> v2)
 {
@@ -267,17 +380,93 @@ size_t levenshtein_distance(std::vector<Instruction*> v1, std::vector<Instructio
 	return r;
 }
 
+std::map<std::vector<Instruction*>, int> getProfile(std::vector<Instruction*> string)
+{
+    int k = 3;// 3/5/7
+    std::map<std::vector<Instruction*>, int> shingles;
 
+    for (int i = 0; i < (string.size() - k + 1); i++) {
+        std::vector<Instruction*> shingle;
+        for (int j = 0; j < k; ++j)
+	        shingle.push_back(string.at(i+j));
+	    int old = 0;
+        for (std::map<std::vector<Instruction*>, int>::iterator j = shingles.begin(); j != shingles.end(); ++j)
+        {
+        	if (hamming_distance(j->first,shingle) == k)
+        	{
+        		old = j->second;
+        		j->second++;
+        		break;
+        	}
+        }
+        if (old == 0) {
+            shingles[shingle] = 1;
+        }
+    }
+
+    return shingles;
+}
+
+size_t distance( std::map<std::vector<Instruction*>, int> profile1, std::map<std::vector<Instruction*>, int> profile2)
+{
+    std::map<std::vector<Instruction*>, int> union_ = profile1;
+	for (std::map<std::vector<Instruction*>, int>::iterator j = profile2.begin(); j != profile2.end(); ++j){
+		int old = 0;
+	    for (std::map<std::vector<Instruction*>, int>::iterator i = union_.begin(); i != union_.end(); ++i)
+	    	if (levenshtein_distance(j->first,i->first) == 0)
+	    	{
+	    		old = 1;
+	    		i->second = i->second + j->second;
+	    	}
+	    if (old == 0)
+	    {
+	    	union_[j->first] = j->second;
+	    }
+	}
+
+    size_t agg = 0;
+
+    for (std::map<std::vector<Instruction*>, int>::iterator i = union_.begin(); i != union_.end(); ++i)
+    {
+    	int v1 = 0;
+        int v2 = 0;
+        int iv1 = profile1[i->first];
+        if (iv1 != NULL) {
+            v1 = iv1;
+        }
+
+        int iv2 = profile2[i->first];
+        if (iv2 != NULL) {
+            v2 = iv2;
+        }
+        agg += abs(v1 - v2);
+    }
+    return agg;
+}
 
 void similarity()
 {
-	size_t diff = levenshtein_distance(set1, set2);
-	int val1 = set1.size() + set2.size();
-	int val2 = val1 - diff;
-	val2 = val2 * 100;
-	int val3 = (val2 / val1);
-	errs() << "Levenshtein Distance:      " << diff << '\n';
-	errs() << "Similarity:                " << val3 << '%' << '\n';
+	size_t hd = hamming_distance(set1, set2);
+	errs() << "Hamming Distance:      " << hd << '\n';
+	errs() << (hd*100)/set1.size() << '%' << (hd*100)/set2.size() << '%' << '\n';
+
+	// size_t dd = dice_match(set1, set2);
+	// errs() << "DICE Distance:      " << dd << '\n';
+	// errs() << ((set1.size()-dd)*100)/set1.size() << '%' << ((set2.size()-dd)*100)/set2.size() << '%' << '\n';
+
+	size_t ld = levenshtein_distance(set1, set2);
+	errs() << "Levenshtein Distance:      " << ld << '\n';
+	errs() << ((set1.size()-ld)*100)/set1.size() << '%' << ((set2.size()-ld)*100)/set2.size() << '%' << '\n';
+
+	size_t kd = distance(getProfile(set1), getProfile(set2));
+	errs() << "q-gram Distance:      " << kd << '\n';
+	// choose one of these:
+	errs() << (kd*100)/set1.size() << '%' << (kd*100)/set2.size() << '%' << '\n';
+	errs() << ((set1.size()-kd)*100)/set1.size() << '%' << ((set2.size()-kd)*100)/set2.size() << '%' << '\n';
+
+
+
+
 }
 
 namespace {
@@ -290,29 +479,29 @@ struct Pass2 : public ModulePass {
 
 	virtual bool runOnModule(Module& M)
 	{
-		std::ifstream ifs("test2.bc");
-		std::string IRString((std::istreambuf_iterator<char>(ifs)),
-			(std::istreambuf_iterator<char>()));
-		// errs() << IRString;
-		//std::string IRString = readfile("welcome.bc");
-		MemoryBufferRef* Buffer = new MemoryBufferRef(IRString, "test2");
-		// LLVMContext Context_ = M.getContext();
+		std::string fff[2];
+		fff[0] = "test1";
+		fff[1] = "test2";
 
-		// ErrorOr<Module *>
-		Expected<std::unique_ptr<Module>> ModuleOrErr = parseBitcodeFile(*Buffer, *new llvm::LLVMContext());
-		// auto M__ = ModuleOrErr.get();
+		Module* ggg[2];
 
-		// ModuleOrErr.takeError();
-		errs() << "no";
-		if (ModuleOrErr) {
-			auto M__ = std::move(ModuleOrErr.get());
-			Module* M_ = M__.release();
-			errs() << "Module: " << M_->getName() << "\n";
-			addFunctionNames("test1.txt",1,M_);
-			addFunctionNames("test2.txt",2,&M);
-			// printSet();
-			similarity();
+		for (int i = 0; i < 2; ++i)
+		{
+			std::ifstream ifs(fff[i] + ".bc");
+			std::string IRString((std::istreambuf_iterator<char>(ifs)),
+				(std::istreambuf_iterator<char>()));
+			MemoryBufferRef* Buffer = new MemoryBufferRef(IRString, fff[i]);
+			Expected<std::unique_ptr<Module>> ModuleOrErr = parseBitcodeFile(*Buffer, *new llvm::LLVMContext());
+			
+			if (ModuleOrErr) {
+				auto M__ = std::move(ModuleOrErr.get());
+				ggg[i] = M__.release();
+				errs() << "Module: " << ggg[i]->getName() << "\n";
+			}
+			addFunctionNames(fff[i] + ".txt",i+1,ggg[i]);
 		}
+		// printSet();
+		similarity();
 		return false;
 	}
 }; // end of struct SkeletonPass

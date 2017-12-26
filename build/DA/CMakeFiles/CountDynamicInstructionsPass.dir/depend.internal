@@ -128,6 +128,7 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o
  /usr/local/include/llvm/ADT/SmallPtrSet.h
  /usr/local/include/llvm/ADT/SmallString.h
  /usr/local/include/llvm/ADT/SmallVector.h
+ /usr/local/include/llvm/ADT/StringExtras.h
  /usr/local/include/llvm/ADT/StringMap.h
  /usr/local/include/llvm/ADT/StringRef.h
  /usr/local/include/llvm/ADT/Twine.h
@@ -140,6 +141,8 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o
  /usr/local/include/llvm/ADT/iterator.h
  /usr/local/include/llvm/ADT/iterator_range.h
  /usr/local/include/llvm/ADT/simple_ilist.h
+ /usr/local/include/llvm/Bitcode/BitCodes.h
+ /usr/local/include/llvm/Bitcode/BitcodeReader.h
  /usr/local/include/llvm/Config/abi-breaking.h
  /usr/local/include/llvm/Config/llvm-config.h
  /usr/local/include/llvm/IR/Argument.h
@@ -154,6 +157,7 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o
  /usr/local/include/llvm/IR/DataLayout.h
  /usr/local/include/llvm/IR/DebugLoc.h
  /usr/local/include/llvm/IR/DerivedTypes.h
+ /usr/local/include/llvm/IR/DiagnosticInfo.h
  /usr/local/include/llvm/IR/Function.h
  /usr/local/include/llvm/IR/GlobalAlias.h
  /usr/local/include/llvm/IR/GlobalIFunc.h
@@ -173,6 +177,7 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o
  /usr/local/include/llvm/IR/Metadata.def
  /usr/local/include/llvm/IR/Metadata.h
  /usr/local/include/llvm/IR/Module.h
+ /usr/local/include/llvm/IR/ModuleSummaryIndex.h
  /usr/local/include/llvm/IR/OperandTraits.h
  /usr/local/include/llvm/IR/Operator.h
  /usr/local/include/llvm/IR/SymbolTableListTraits.h
@@ -199,7 +204,9 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o
  /usr/local/include/llvm/Support/CommandLine.h
  /usr/local/include/llvm/Support/Compiler.h
  /usr/local/include/llvm/Support/DataTypes.h
+ /usr/local/include/llvm/Support/Debug.h
  /usr/local/include/llvm/Support/Endian.h
+ /usr/local/include/llvm/Support/Error.h
  /usr/local/include/llvm/Support/ErrorHandling.h
  /usr/local/include/llvm/Support/ErrorOr.h
  /usr/local/include/llvm/Support/Host.h
@@ -210,8 +217,13 @@ DA/CMakeFiles/CountDynamicInstructionsPass.dir/Pass2.cpp.o
  /usr/local/include/llvm/Support/Options.h
  /usr/local/include/llvm/Support/PointerLikeTypeTraits.h
  /usr/local/include/llvm/Support/RWMutex.h
+ /usr/local/include/llvm/Support/Regex.h
+ /usr/local/include/llvm/Support/SMLoc.h
+ /usr/local/include/llvm/Support/SourceMgr.h
  /usr/local/include/llvm/Support/SwapByteOrder.h
  /usr/local/include/llvm/Support/Threading.h
+ /usr/local/include/llvm/Support/YAMLParser.h
+ /usr/local/include/llvm/Support/YAMLTraits.h
  /usr/local/include/llvm/Support/raw_ostream.h
  /usr/local/include/llvm/Support/type_traits.h
  /usr/local/include/llvm/Transforms/IPO/PassManagerBuilder.h
