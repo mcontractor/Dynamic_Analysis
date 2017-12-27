@@ -255,7 +255,7 @@ size_t hamming_distance(std::vector<Instruction*> v1, std::vector<Instruction*> 
 	return dist;
 }
 
-int dice_match(char *string1, char *string2)
+int dice_match(std::vector<Instruction*> string1, std::vector<Instruction*> string2)
 {
     struct pairs
             {
@@ -392,7 +392,7 @@ std::map<std::vector<Instruction*>, int> getProfile(std::vector<Instruction*> st
 	    int old = 0;
         for (std::map<std::vector<Instruction*>, int>::iterator j = shingles.begin(); j != shingles.end(); ++j)
         {
-        	if (hamming_distance(j->first,shingle) == k)
+        	if (levenshtein_distance(j->first,shingle) == 0 && old == 0)
         	{
         		old = j->second;
         		j->second++;
@@ -413,10 +413,11 @@ size_t distance( std::map<std::vector<Instruction*>, int> profile1, std::map<std
 	for (std::map<std::vector<Instruction*>, int>::iterator j = profile2.begin(); j != profile2.end(); ++j){
 		int old = 0;
 	    for (std::map<std::vector<Instruction*>, int>::iterator i = union_.begin(); i != union_.end(); ++i)
-	    	if (levenshtein_distance(j->first,i->first) == 0)
+	    	if (levenshtein_distance(j->first,i->first) == 0 && old == 0)
 	    	{
 	    		old = 1;
 	    		i->second = i->second + j->second;
+	    		break;
 	    	}
 	    if (old == 0)
 	    {
@@ -463,10 +464,6 @@ void similarity()
 	// choose one of these:
 	errs() << (kd*100)/set1.size() << '%' << (kd*100)/set2.size() << '%' << '\n';
 	errs() << ((set1.size()-kd)*100)/set1.size() << '%' << ((set2.size()-kd)*100)/set2.size() << '%' << '\n';
-
-
-
-
 }
 
 namespace {
